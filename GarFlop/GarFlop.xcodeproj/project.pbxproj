@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		99700CCC20DD30E300E8C48B /* settings_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 99700CCA20DD30E300E8C48B /* settings_list.c */; };
 		A996985520DC6B06006F6CFB /* garflop.c in Sources */ = {isa = PBXBuildFile; fileRef = A996985420DC6B06006F6CFB /* garflop.c */; };
 /* End PBXBuildFile section */
 
@@ -23,6 +24,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		99700CCA20DD30E300E8C48B /* settings_list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = settings_list.c; sourceTree = "<group>"; };
+		99700CCB20DD30E300E8C48B /* settings_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings_list.h; sourceTree = "<group>"; };
 		A996985120DC6B06006F6CFB /* GarFlop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GarFlop; sourceTree = BUILT_PRODUCTS_DIR; };
 		A996985420DC6B06006F6CFB /* garflop.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = garflop.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -58,6 +61,8 @@
 			isa = PBXGroup;
 			children = (
 				A996985420DC6B06006F6CFB /* garflop.c */,
+				99700CCB20DD30E300E8C48B /* settings_list.h */,
+				99700CCA20DD30E300E8C48B /* settings_list.c */,
 			);
 			path = GarFlop;
 			sourceTree = "<group>";
@@ -118,6 +123,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				99700CCC20DD30E300E8C48B /* settings_list.c in Sources */,
 				A996985520DC6B06006F6CFB /* garflop.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

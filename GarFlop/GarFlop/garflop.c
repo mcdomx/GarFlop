@@ -13,25 +13,21 @@
 #include <sys/types.h>
 #include <sys/uio.h>
 #include <string.h>
+#include "settings_list.h"
 
-#define LINESIZE 200
-#define NUM_SETTINGS 3
-#define DELIM ":"
+#define SETTINGS_FILE	"settings.txt"
 
-struct settings {
-    char* setting;
-    char* value;
-};
 
-void read_settings(struct settings*);
 
+
+
+static struct settings_list* settings_list; //holds list of settings
 
 int main(int argc, const char * argv[]) {
     
-    //read setting file
-    struct settings* settings = NULL;
-    read_settings(settings);
-    
+    //process settings file
+	settings_list = read_settings_file(SETTINGS_FILE);
+	
     
     //search for files and store in array
     //present files to user
@@ -44,35 +40,6 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void read_settings(struct settings* rv) {
-    
-    char line[LINESIZE];
-    struct settings file_settings[NUM_SETTINGS];
-    FILE* fp;
-    if ( (fp = fopen("settings.txt", "r")) == NULL )
-        perror("Can't read file.");
-    
-    
-    while ( fgets(line, LINESIZE, fp) != NULL ) {
-        
-        //If line starts with a # or is a blank line (\n), skip it
-        if ( line[0] == '#' || line[0] == '\n' ) continue;
-        
-        //iterate through elements of the line and put
-        //a \0 where a # is found
-        strcpy(file_settings.setting, line);
-        strsep(line, DELIM);
-        strcpy(file_settings.value, line);
 
-        }
-    
-    fclose(fp);
-} // end read_settings
-
-struct settings* init_settings() {
-    return malloc(sizeof(struct settings));
-}
-
-struct settings
 
 

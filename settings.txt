@@ -10,6 +10,6 @@
 # path_to_garmin
 #	path_to_garmin: /Garmin/NewFiles
 
-folder_search:2
-units:1
-path_to_garmin:/Garmin/NewFiles
+folder_search	2
+units	1
+path_to_garmin	/Garmin/NewFiles
