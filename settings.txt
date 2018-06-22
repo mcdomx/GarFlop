@@ -1,0 +1,15 @@
+#GarFlop Settings File
+#Supported settings include:
+# folder_search
+#	folder_search:1	#search for files in current directory
+#	folder_search:2	#search for files in users download directory
+#	folder_search:3	#search for files on users harddrive
+# units
+#	units:1	#metric
+#	units:2	#imperial
+# path_to_garmin
+#	path_to_garmin: /Garmin/NewFiles
+
+folder_search:2
+units:1
+path_to_garmin:/Garmin/NewFiles
