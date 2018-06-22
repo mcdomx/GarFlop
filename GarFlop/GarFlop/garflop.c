@@ -14,6 +14,7 @@
 #include <sys/uio.h>
 #include <string.h>
 #include "settings_list.h"
+#include "files_list.h"
 
 #define SETTINGS_FILE	"settings.txt"
 
@@ -29,7 +30,7 @@ int main(int argc, const char * argv[]) {
 	settings_list = read_settings_file(SETTINGS_FILE);
 	
     //search for files and store in array
-	
+    find_files("/Users/mcdomx/Downloads");
 	
     //present files to user
     //ask for input
