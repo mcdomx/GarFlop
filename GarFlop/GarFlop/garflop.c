@@ -28,8 +28,9 @@ int main(int argc, const char * argv[]) {
     //process settings file
 	settings_list = read_settings_file(SETTINGS_FILE);
 	
-    
     //search for files and store in array
+	
+	
     //present files to user
     //ask for input
     //if Q, or similar, exit

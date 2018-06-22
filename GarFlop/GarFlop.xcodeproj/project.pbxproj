@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		99700CCC20DD30E300E8C48B /* settings_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 99700CCA20DD30E300E8C48B /* settings_list.c */; };
+		99700CCF20DD752B00E8C48B /* files_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 99700CCD20DD752B00E8C48B /* files_list.c */; };
 		A996985520DC6B06006F6CFB /* garflop.c in Sources */ = {isa = PBXBuildFile; fileRef = A996985420DC6B06006F6CFB /* garflop.c */; };
 /* End PBXBuildFile section */
 
@@ -26,6 +27,8 @@
 /* Begin PBXFileReference section */
 		99700CCA20DD30E300E8C48B /* settings_list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = settings_list.c; sourceTree = "<group>"; };
 		99700CCB20DD30E300E8C48B /* settings_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings_list.h; sourceTree = "<group>"; };
+		99700CCD20DD752B00E8C48B /* files_list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = files_list.c; sourceTree = "<group>"; };
+		99700CCE20DD752B00E8C48B /* files_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = files_list.h; sourceTree = "<group>"; };
 		A996985120DC6B06006F6CFB /* GarFlop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GarFlop; sourceTree = BUILT_PRODUCTS_DIR; };
 		A996985420DC6B06006F6CFB /* garflop.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = garflop.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -63,6 +66,8 @@
 				A996985420DC6B06006F6CFB /* garflop.c */,
 				99700CCB20DD30E300E8C48B /* settings_list.h */,
 				99700CCA20DD30E300E8C48B /* settings_list.c */,
+				99700CCE20DD752B00E8C48B /* files_list.h */,
+				99700CCD20DD752B00E8C48B /* files_list.c */,
 			);
 			path = GarFlop;
 			sourceTree = "<group>";
@@ -125,6 +130,7 @@
 			files = (
 				99700CCC20DD30E300E8C48B /* settings_list.c in Sources */,
 				A996985520DC6B06006F6CFB /* garflop.c in Sources */,
+				99700CCF20DD752B00E8C48B /* files_list.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -94,7 +94,7 @@ int read_param(FILE *fp, char *param, int plen, char *value, int vlen)
 {
 	char line[LINELEN];
 	int	c;
-	char fmt[100] ;
+	char fmt[100];
 	
 	sprintf(fmt, "%%%ds%%%ds", plen, vlen);
 	
@@ -129,8 +129,8 @@ struct settings_list* read_settings_file(char* filename) {
 	
 	//Variables
 	struct settings_list* rv = malloc(sizeof(struct settings_list));
-	char* param = NULL;
-	char* value = NULL;
+	char param[PARAM_LEN];
+	char value[VAL_LEN];
 	
 	//Read settings file parameters and add to list
 	while ( read_param(fp, param, PARAM_LEN, value, VAL_LEN) != EOF ) {
