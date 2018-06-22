@@ -7,11 +7,20 @@
 //
 
 #include <stdio.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <fcntl.h>
+#include <sys/types.h>
+#include <sys/uio.h>
+#include <string.h>
+
+#define LINESIZE 200
+#define NUM_SETTINGS 3
+#define DELIM ":"
 
 struct settings {
-    int folder_search;
-    int units;
-    char* path_to_garmin;
+    char* setting;
+    char* value;
 };
 
 void read_settings(struct settings*);
@@ -35,15 +44,35 @@ int main(int argc, const char * argv[]) {
     return 0;
 }
 
-void read_settings(struct settings* settings) {
+void read_settings(struct settings* rv) {
     
-    char* line;
-    FILE* fd = fopen("settings.txt","r");
+    char line[LINESIZE];
+    struct settings file_settings[NUM_SETTINGS];
+    FILE* fp;
+    if ( (fp = fopen("settings.txt", "r")) == NULL )
+        perror("Can't read file.");
     
-    while ( fread(line++, 500, 1, fd) != '\n' ){
-        if (line[0] == "#") continue;
-        fprintf(stdout, "%s", line);
-    }
     
-    fclose(fd);
+    while ( fgets(line, LINESIZE, fp) != NULL ) {
+        
+        //If line starts with a # or is a blank line (\n), skip it
+        if ( line[0] == '#' || line[0] == '\n' ) continue;
+        
+        //iterate through elements of the line and put
+        //a \0 where a # is found
+        strcpy(file_settings.setting, line);
+        strsep(line, DELIM);
+        strcpy(file_settings.value, line);
+
+        }
+    
+    fclose(fp);
+} // end read_settings
+
+struct settings* init_settings() {
+    return malloc(sizeof(struct settings));
 }
+
+struct settings
+
+
