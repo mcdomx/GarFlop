@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GarFlop/settings_list.c"
-            timestampString = "551382343.5424891"
+            filePath = "GarFlop/garflop.c"
+            timestampString = "551396765.390287"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "107"
-            endingLineNumber = "107"
-            landmarkName = "read_param"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
+            landmarkName = "main"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

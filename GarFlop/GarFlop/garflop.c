@@ -30,7 +30,9 @@ int main(int argc, const char * argv[]) {
 	settings_list = read_settings_file(SETTINGS_FILE);
 	
     //search for files and store in array
-    find_files("/Users/mcdomx/Downloads");
+    struct GPS_file_list* filelist = find_files("/Users/markmcdonald/Downloads");
+	
+	
 	
     //present files to user
     //ask for input
