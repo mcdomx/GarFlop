@@ -16,8 +16,8 @@
 //GPS file structure
 struct GPS_file {
 	int sequnce_ID;
-	char* filename;
-	char* filepath;
+	char* filename;		//filename only with extention
+	char* filepath;		//filename with full path
 	off_t filesize;
 	time_t mod_date;
 	double route_distance;

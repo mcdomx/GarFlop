@@ -17,4 +17,8 @@ struct GPS_entry {
 	double alt;
 };
 
+int open_GPS_file(char* filename, FILE* fp);
+int get_next_point(FILE* fp, struct GPS_entry* next_point);
+double dist_between_points (struct GPS_entry*, struct GPS_entry*);
+
 #endif /* parse_GPS_file_h */

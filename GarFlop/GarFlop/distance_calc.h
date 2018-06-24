@@ -11,4 +11,7 @@
 
 #include <stdio.h>
 
+double calc_distance (double lat1, double lon1, double alt1,
+					  double lat2, double lon2, double alt2);
+
 #endif /* distance_calc_h */

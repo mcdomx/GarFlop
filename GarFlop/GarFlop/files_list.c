@@ -70,8 +70,8 @@ struct GPS_file_list* add_file (struct GPS_file_list* list, ino_t inode, char* f
     list->head->filename = malloc(sizeof(*file));
     strcpy(list->head->filename, file);
     
-    list->head->filepath = malloc(sizeof(*path));
-    strcpy(list->head->filepath, path);
+    list->head->filepath = malloc(sizeof(*fullpathname));
+    strcpy(list->head->filepath, fullpathname);
 	
 	//Get filesize and time stamp using stat()
 	struct stat inostat;
