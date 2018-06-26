@@ -24,8 +24,12 @@ void find_files(char* root_directory, struct GPS_file_list* filelist ){
 	struct stat file_stat;
 	char fullpathname[MAXNAMLEN];
 	
-	if ( (dp = opendir(root_directory)) == NULL)
+    //TODO: Make an env reader to get $NAME
+    
+    if ( (dp = opendir(root_directory)) == NULL) {
 		perror("Cannot open directory");
+        exit(0);
+    }
 	
 	while ( (de = readdir(dp)) != NULL ) {
 		
@@ -61,45 +65,40 @@ void find_files(char* root_directory, struct GPS_file_list* filelist ){
 	
 } // end find_files()
 
-
-
 void add_file (struct GPS_file_list* filelist,
 								struct stat* file_stat,
 								char* filename,
 								char* fullpathname) {
 	
-	//Create space for GPS_file elements and add variables to them
-	struct GPS_file* newGPSfile = malloc(sizeof(struct GPS_file));
+    //Store previous head in a new variable
+    struct GPS_file* prevhead = filelist->head;
+    
+	//Make space for new GPS file and put the pointers in the header
+    filelist->head = malloc(sizeof(struct GPS_file));
 	
-	newGPSfile->filename = malloc(sizeof(*filename));
-	strcpy(newGPSfile->filename, filename);
+	filelist->head->filename = malloc(sizeof(*filename));
+	strcpy(filelist->head->filename, filename);
 	
-	newGPSfile->filepath = malloc(sizeof(*fullpathname));
-	strcpy(newGPSfile->filepath, fullpathname);
+	filelist->head->filepath = malloc(sizeof(*fullpathname));
+	strcpy(filelist->head->filepath, fullpathname);
 	
-	newGPSfile->filesize = malloc(sizeof(file_stat->st_size));
-	*newGPSfile->filesize = file_stat->st_size;
+//    memset(filelist->head->filesize, '\0', sizeof(off_t));
+    filelist->head->filesize = malloc(sizeof(file_stat->st_size));
+	*filelist->head->filesize = file_stat->st_size;
 	
-	newGPSfile->mod_date = malloc(sizeof(file_stat->st_mtimespec.tv_sec));
-	*newGPSfile->mod_date = file_stat->st_mtimespec.tv_sec;
+	filelist->head->mod_date = malloc(sizeof(file_stat->st_mtimespec.tv_sec));
+	*filelist->head->mod_date = file_stat->st_mtimespec.tv_sec;
 	
-	newGPSfile->route_distance = malloc(sizeof(double));
-	*newGPSfile->route_distance = 99.9;
+	filelist->head->route_distance = malloc(sizeof(double));
+	*filelist->head->route_distance = 999.9;
 	
-	if ( filelist->head == NULL) { // this is the first file in the list
-	
-		newGPSfile->sequnce_ID = 1;
-		filelist->head = newGPSfile;
-		filelist->head->next = NULL;
-	
+	if ( prevhead == NULL) { // this is the first file in the list
+		filelist->head->sequnce_ID = 1;
 	} else { // if an entry already exists, move current head to next
-	
-		newGPSfile->sequnce_ID = filelist->head->sequnce_ID + 1;
-		struct GPS_file* prevhead = filelist->head;
-		filelist->head = newGPSfile;
-		filelist->head->next = prevhead;
-	
+		filelist->head->sequnce_ID = prevhead->sequnce_ID + 1;
 	}
+    
+    filelist->head->next = prevhead;
 
     return;
     

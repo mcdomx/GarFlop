@@ -74,10 +74,10 @@
 				99700CCA20DD30E300E8C48B /* settings_list.c */,
 				99700CCE20DD752B00E8C48B /* files_list.h */,
 				99700CCD20DD752B00E8C48B /* files_list.c */,
-				99115DA120DDADCE00D7FF21 /* distance_calc.h */,
-				99115DA020DDADCE00D7FF21 /* distance_calc.c */,
 				99115DA420DDB07F00D7FF21 /* parse_GPS_file.h */,
 				99115DA320DDB07F00D7FF21 /* parse_GPS_file.c */,
+				99115DA120DDADCE00D7FF21 /* distance_calc.h */,
+				99115DA020DDADCE00D7FF21 /* distance_calc.c */,
 			);
 			path = GarFlop;
 			sourceTree = "<group>";
