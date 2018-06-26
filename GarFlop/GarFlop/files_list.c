@@ -16,13 +16,13 @@
 #include "files_list.h"
 
 //Recursive search for files based on provided starting point
-struct GPS_file_list* find_files(char* root_directory){
+void find_files(char* root_directory, struct GPS_file_list* filelist ){
 	
-    struct GPS_file_list* list_ptr = malloc(sizeof(struct GPS_file_list));
-    
 	//search directory
 	DIR* dp;
 	struct dirent* de;
+	struct stat file_stat;
+	char fullpathname[MAXNAMLEN];
 	
 	if ( (dp = opendir(root_directory)) == NULL)
 		perror("Cannot open directory");
@@ -31,64 +31,77 @@ struct GPS_file_list* find_files(char* root_directory){
 		
 		if (de->d_name[0] == '.') continue; //skip hidden and . and ..
 		
-        // If item is a directory - recurse (type 4 is folder / 8 is a file)
-		if (de->d_type == 4) {
-			char fullpath[MAX_NAMESIZE];
-			sprintf(fullpath, "%s/%s", root_directory, de->d_name);
-            find_files(fullpath);  //recurse for new directory
-		}
+		//Get stat on the selected file
+		sprintf(fullpathname, "%s/%s", root_directory, de->d_name);
+		stat(fullpathname, &file_stat);
 		
-		//Get the 3 character file extension
-        char* file_type;
-        file_type = &de->d_name[de->d_namlen - 3];
-        
-        //If filetype is of a GPS file, copy to file list
-        if ( strcmp(file_type, "gpx") == 0 || strcmp(file_type, "fit") == 0 )
-            list_ptr = add_file(list_ptr, de->d_ino ,de->d_name, root_directory);
-
+		// If item is a directory - recurse
+		if (S_ISDIR(file_stat.st_mode)) { //directory
+		
+			char new_fullpathname[MAX_NAMESIZE];
+			sprintf(new_fullpathname, "%s/%s", root_directory, de->d_name);
+            find_files(new_fullpathname, filelist);  //recurse for new directory
+		
+		} else {
+		
+			//Not a directory - determine file type and add to list if GPS file
+			char* file_type;
+			file_type = &de->d_name[de->d_namlen - 3];
+			
+			//If filetype is of a GPS file, copy to file list
+			if ( strcmp(file_type, "gpx") == 0 || strcmp(file_type, "fit") == 0 )
+				add_file(filelist, &file_stat ,de->d_name, fullpathname);
+			
+		}  // end if else checking for directory or file
+		
 	} // end while - loop through directory
 	
 	closedir(dp);
-    return list_ptr;
+    return;
 	
 } // end find_files()
 
 
 
-struct GPS_file_list* add_file (struct GPS_file_list* list, ino_t inode, char* file, char* path) {
+void add_file (struct GPS_file_list* filelist,
+								struct stat* file_stat,
+								char* filename,
+								char* fullpathname) {
 	
-	//Create a fullpath filename
-	char fullpathname[MAX_NAMESIZE];
-	sprintf(fullpathname, "%s/%s", path, file);
+	//Create space for GPS_file elements and add variables to them
+	struct GPS_file* newGPSfile = malloc(sizeof(struct GPS_file));
 	
-    // Create linked list entry - Add new items at head
-    struct GPS_file *prevHeadPtr = list->head;   // save the old head
-    
-    // replace the head with the new item
-    list->head = malloc(sizeof(struct GPS_file));
-    
-    list->head->filename = malloc(sizeof(*file));
-    strcpy(list->head->filename, file);
-    
-    list->head->filepath = malloc(sizeof(*fullpathname));
-    strcpy(list->head->filepath, fullpathname);
+	newGPSfile->filename = malloc(sizeof(*filename));
+	strcpy(newGPSfile->filename, filename);
 	
-	//Get filesize and time stamp using stat()
-	struct stat inostat;
-	stat(fullpathname, &inostat);
+	newGPSfile->filepath = malloc(sizeof(*fullpathname));
+	strcpy(newGPSfile->filepath, fullpathname);
 	
-	//list->head->filesize = malloc(sizeof(off_t));
-	list->head->filesize = inostat.st_size;
+	newGPSfile->filesize = malloc(sizeof(file_stat->st_size));
+	*newGPSfile->filesize = file_stat->st_size;
 	
-	list->head->mod_date = inostat.st_mtimespec.tv_sec;
-    
-    if ( prevHeadPtr == NULL ) { //first entry
-        list->head->next = NULL;
-    } else {                     //make the old header the new next
-        list->head->next = prevHeadPtr;
-    }
-    
-    return list;
+	newGPSfile->mod_date = malloc(sizeof(file_stat->st_mtimespec.tv_sec));
+	*newGPSfile->mod_date = file_stat->st_mtimespec.tv_sec;
+	
+	newGPSfile->route_distance = malloc(sizeof(double));
+	*newGPSfile->route_distance = 99.9;
+	
+	if ( filelist->head == NULL) { // this is the first file in the list
+	
+		newGPSfile->sequnce_ID = 1;
+		filelist->head = newGPSfile;
+		filelist->head->next = NULL;
+	
+	} else { // if an entry already exists, move current head to next
+	
+		newGPSfile->sequnce_ID = filelist->head->sequnce_ID + 1;
+		struct GPS_file* prevhead = filelist->head;
+		filelist->head = newGPSfile;
+		filelist->head->next = prevhead;
+	
+	}
+
+    return;
     
 } // end add_file()
 

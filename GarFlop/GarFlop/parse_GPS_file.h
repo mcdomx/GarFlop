@@ -12,12 +12,12 @@
 #include <stdio.h>
 
 struct GPS_entry {
-	double lat;
-	double lon;
-	double alt;
+	double* lat;
+	double* lon;
+	double* alt;
 };
 
-int open_GPS_file(char* filename, FILE* fp);
+FILE* open_GPS_file(char* filename);
 int get_next_point(FILE* fp, struct GPS_entry* next_point);
 double dist_between_points (struct GPS_entry*, struct GPS_entry*);
 

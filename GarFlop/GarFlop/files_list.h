@@ -18,9 +18,9 @@ struct GPS_file {
 	int sequnce_ID;
 	char* filename;		//filename only with extention
 	char* filepath;		//filename with full path
-	off_t filesize;
-	time_t mod_date;
-	double route_distance;
+	off_t* filesize;
+	time_t* mod_date;
+	double* route_distance;
     struct GPS_file* next;
 };
 
@@ -29,8 +29,8 @@ struct GPS_file_list {
 	struct GPS_file* head;
 };
 
-struct GPS_file_list* find_files(char* );
-struct GPS_file_list* add_file (struct GPS_file_list* , ino_t, char* , char* );
+void find_files(char*, struct GPS_file_list* );
+void add_file (struct GPS_file_list* , struct stat*, char* , char* );
 char* get_file (struct GPS_file_list*, char*);
 
 #endif /* files_list_h */

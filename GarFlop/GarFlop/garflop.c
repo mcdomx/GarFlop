@@ -30,7 +30,8 @@ int main(int argc, const char * argv[]) {
 	settings_list = read_settings_file(SETTINGS_FILE);
 	
     //search for files and store in array
-    struct GPS_file_list* filelist = find_files("/Users/markmcdonald/Downloads");
+	struct GPS_file_list* filelist = malloc(sizeof(struct GPS_file_list));
+    find_files("/Users/markmcdonald/Downloads/TEST", filelist);
 	
 	//read each file and collect relevant file data
 	struct GPS_file* cur_GPS_file = NULL; //current file being processed
@@ -43,13 +44,15 @@ int main(int argc, const char * argv[]) {
 	}
 	
 	//loop through files in filelist
-	FILE* fp = NULL;
+	FILE* fp;
 	while ( 1 ) {
-		if ( open_GPS_file(cur_GPS_file->filepath, fp) )  {
-			//file opened successfully
-			process_file(fp, cur_GPS_file->filepath);
+		if ( (fp = open_GPS_file(cur_GPS_file->filepath)) == NULL )  {
+			continue; // file failed to open - continue to next file
 		}
 		
+			//file opened successfully
+			process_file(fp, cur_GPS_file->filepath);
+			
 		if (cur_GPS_file->next == NULL)
 			break; //last file in list was processed
 		
