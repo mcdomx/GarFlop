@@ -21,6 +21,8 @@ struct GPS_file {
 	off_t* filesize;
 	time_t* mod_date;
 	double* route_distance;
+	double* route_climb;
+	double* route_descent;
     struct GPS_file* next;
 };
 

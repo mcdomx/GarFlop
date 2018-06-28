@@ -14,6 +14,7 @@
 #include <sys/stat.h>
 
 #include "files_list.h"
+#include "distance_calc.h"
 
 //Recursive search for files based on provided starting point
 void find_files(char* root_directory, struct GPS_file_list* filelist ){
@@ -90,7 +91,9 @@ void add_file (struct GPS_file_list* filelist,
 	*filelist->head->mod_date = file_stat->st_mtimespec.tv_sec;
 	
 	filelist->head->route_distance = malloc(sizeof(double));
-	*filelist->head->route_distance = 999.9;
+	filelist->head->route_climb = malloc(sizeof(double));
+	filelist->head->route_descent = malloc(sizeof(double));
+	calc_file_distance(filelist->head); //populates distance, climb and descent
 	
 	if ( prevhead == NULL) { // this is the first file in the list
 		filelist->head->sequnce_ID = 1;

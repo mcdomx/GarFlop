@@ -11,7 +11,15 @@
 
 #include <stdio.h>
 #include "parse_GPS_file.h"
+#include "files_list.h"
+
+struct GPS_entry {
+	double* lat;
+	double* lon;
+	double* alt;
+};
 
 double dist_between_points (struct GPS_entry*, struct GPS_entry*);
+void calc_file_distance (struct GPS_file*) ;
 
 #endif /* distance_calc_h */

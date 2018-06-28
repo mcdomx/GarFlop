@@ -11,14 +11,8 @@
 
 #include <stdio.h>
 
-struct GPS_entry {
-	double* lat;
-	double* lon;
-	double* alt;
-};
 
-FILE* open_GPS_file(char* filename);
-int get_next_point(FILE* fp, struct GPS_entry* next_point);
+
 
 
 #endif /* parse_GPS_file_h */
