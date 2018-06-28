@@ -17,6 +17,7 @@
 #include "settings_list.h"
 #include "files_list.h"
 #include "parse_GPS_file.h"
+#include "distance_calc.h"
 
 #define SETTINGS_FILE	"settings.txt"
 #define SOURCE_DIR1 "/Users/mcdomx/Downloads/TEST"
@@ -26,6 +27,10 @@
 static struct settings_list* settings_list; //holds list of settings
 
 void process_file ( char* );
+void copy_point_data (struct GPS_entry* , struct GPS_entry* );
+void free_point ( struct GPS_entry* );
+struct GPS_entry* malloc_point ( void );
+
 
 int main(int argc, const char * argv[]) {
     
@@ -34,7 +39,7 @@ int main(int argc, const char * argv[]) {
 	
     //search for files and store in array
 	struct GPS_file_list* filelist = malloc(sizeof(struct GPS_file_list));
-    find_files(SOURCE_DIR1, filelist);
+    find_files(SOURCE_DIR2, filelist);
 	
 	//read each file and collect relevant file data
 	struct GPS_file* cur_GPS_file = NULL; //current file being processed
@@ -76,15 +81,8 @@ void process_file (char* filepath) {
 	//Malloc two points
 	//TODO: Does this make room for the lat and lon?
 	//TODO: May need to create a malloc function
-	struct GPS_entry* point1 = malloc(sizeof(struct GPS_entry));
-    point1->lat = malloc(sizeof(double));
-    point1->lon = malloc(sizeof(double));
-    point1->alt = malloc(sizeof(double));
-    
-	struct GPS_entry* point2 = malloc(sizeof(struct GPS_entry));
-    point2->lat = malloc(sizeof(double));
-    point2->lon = malloc(sizeof(double));
-    point2->alt = malloc(sizeof(double));
+	struct GPS_entry* point1 = malloc_point();
+	struct GPS_entry* point2 = malloc_point();
 	
 	double ttl_climb = 0;
 	double ttl_descent = 0;
@@ -112,8 +110,8 @@ void process_file (char* filepath) {
             else
                 ttl_descent += elevation_chg;
             
-            //copy point2 to to point1
-            point1 = point2;
+            //copy point2 data to to point1
+			copy_point_data(point2, point1);
             
         } // end loop through GPS file to get points
    
@@ -122,16 +120,44 @@ void process_file (char* filepath) {
 	//Finished loop because no more points found
     fclose(fp);
     
-	free(point1->lat);
-    free(point1->lon);
-    free(point1->alt);
-    free(point1);
-    free(point2->lat);
-    free(point2->lon);
-    free(point2->alt);
-    free(point2);
+	free_point(point1);
+	free_point(point2);
+	
+	printf("\nFile: %s\n", filepath);
+	printf("Distance: %.1f km\n", ttl_distance/1000);
+	printf("Climb: %.1lf m\n", ttl_climb);
+	printf("Descent: %.1lf m\n", ttl_descent);
+	
 	
 } //end process_file()
+
+void copy_point_data (struct GPS_entry* from_point, struct GPS_entry* to_point) {
+	
+	*to_point->lat = *from_point->lat;
+	*to_point->lon = *from_point->lon;
+	*to_point->alt = *from_point->alt;
+	
+} // end copy_point_data
+
+//Create memory space for a point
+struct GPS_entry* malloc_point ( void ) {
+	
+	struct GPS_entry* point = malloc(sizeof(struct GPS_entry));
+	point->lat = malloc(sizeof(double));
+	point->lon = malloc(sizeof(double));
+	point->alt = malloc(sizeof(double));
+	
+	return point;
+	
+} // end malloc_point
+
+//Free memory space for a point
+void free_point ( struct GPS_entry* point ) {
+	free(point->lat);
+	free(point->lon);
+	free(point->alt);
+	free(point);
+} // end free_point
 
 
 

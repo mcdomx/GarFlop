@@ -15,6 +15,20 @@
       </ContextState>
       <ContextState
          contextName = "process_file:garflop.c">
+         <PersistentStrings>
+            <PersistentString
+               value = "ttl_descent">
+            </PersistentString>
+            <PersistentString
+               value = "ttl_distance">
+            </PersistentString>
+            <PersistentString
+               value = "ttl_climb">
+            </PersistentString>
+         </PersistentStrings>
+      </ContextState>
+      <ContextState
+         contextName = "copy_point_data:garflop.c">
       </ContextState>
       <ContextState
          contextName = "get_next_point:parse_GPS_file.c">

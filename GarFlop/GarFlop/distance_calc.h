@@ -10,8 +10,8 @@
 #define distance_calc_h
 
 #include <stdio.h>
+#include "parse_GPS_file.h"
 
-double calc_distance (double lat1, double lon1, double alt1,
-					  double lat2, double lon2, double alt2);
+double dist_between_points (struct GPS_entry*, struct GPS_entry*);
 
 #endif /* distance_calc_h */

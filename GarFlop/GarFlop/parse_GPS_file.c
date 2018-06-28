@@ -46,8 +46,7 @@ int get_next_point(FILE* fp, struct GPS_entry* next_point) {
 	char latlon_fmt[LINELEN];
 	sprintf(latlon_fmt, " <trkpt lat=\"%%%dlf\" lon=\"%%%dlf\">", TAGLEN, TAGLEN);
 	
-	
-	char ele_fmt[150];
+	char ele_fmt[LINELEN];
 	sprintf(ele_fmt, " <ele>%%%dlf</ele>", TAGLEN);
 	
 	//read line
@@ -91,9 +90,4 @@ int get_next_point(FILE* fp, struct GPS_entry* next_point) {
 	return rv; //0 = no points found at EOF; 2 = complete record found
 }
 
-double dist_between_points (struct GPS_entry* pt1, struct GPS_entry* pt2) {
-	
-	return calc_distance(*pt1->lat, *pt1->lon, *pt1->alt, *pt2->lat, *pt2->lon, *pt2->alt);
-	
-	
-} // end dist_between_points()
+
