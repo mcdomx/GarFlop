@@ -9,13 +9,13 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "GarFlop/garflop.c"
-            timestampString = "551708411.8249021"
+            filePath = "GarFlop/files_list.c"
+            timestampString = "551937157.530264"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "108"
-            endingLineNumber = "108"
-            landmarkName = "process_file"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
+            landmarkName = "add_file"
             landmarkType = "9">
          </BreakpointContent>
       </BreakpointProxy>

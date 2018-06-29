@@ -19,8 +19,8 @@
 #include "distance_calc.h"
 
 #define SETTINGS_FILE	"settings.txt"
-#define SOURCE_DIR1 "/Users/mcdomx/Downloads/TEST"
-#define SOURCE_DIR2 "/Users/markmcdonald/Downloads/TEST"
+#define SOURCE_DIR2 "/Users/mcdomx/Downloads/TEST"
+#define SOURCE_DIR1 "/Users/markmcdonald/Downloads/TEST"
 
 
 static struct settings_list* settings_list; //holds list of settings

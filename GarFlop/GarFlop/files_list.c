@@ -71,28 +71,30 @@ void add_file (struct GPS_file_list* filelist,
 								char* filename,
 								char* fullpathname) {
 	
+    struct GPS_file* malloc_GPS_file ( void );
+    
     //Store previous head in a new variable
     struct GPS_file* prevhead = filelist->head;
     
 	//Make space for new GPS file and put the pointers in the header
-    filelist->head = malloc(sizeof(struct GPS_file));
+    
+    //filelist->head = malloc(sizeof(struct GPS_file));
+    filelist->head = malloc_GPS_file();
 	
-	filelist->head->filename = malloc(sizeof(*filename));
+	//filelist->head->filename = malloc(sizeof(*filename));
 	strcpy(filelist->head->filename, filename);
 	
-	filelist->head->filepath = malloc(sizeof(*fullpathname));
+	//filelist->head->filepath = malloc(sizeof(*fullpathname));
 	strcpy(filelist->head->filepath, fullpathname);
 	
-//    memset(filelist->head->filesize, '\0', sizeof(off_t));
-    filelist->head->filesize = malloc(sizeof(file_stat->st_size));
+    //NEXT line intermittently causing memory issue
+    //filelist->head->filesize = (off_t*)malloc(sizeof(file_stat->st_size));
 	*filelist->head->filesize = file_stat->st_size;
 	
-	filelist->head->mod_date = malloc(sizeof(file_stat->st_mtimespec.tv_sec));
+	//filelist->head->mod_date = (__darwin_time_t*)malloc(sizeof(file_stat->st_mtimespec.tv_sec));
 	*filelist->head->mod_date = file_stat->st_mtimespec.tv_sec;
 	
-	filelist->head->route_distance = malloc(sizeof(double));
-	filelist->head->route_climb = malloc(sizeof(double));
-	filelist->head->route_descent = malloc(sizeof(double));
+	
 	calc_file_distance(filelist->head); //populates distance, climb and descent
 	
 	if ( prevhead == NULL) { // this is the first file in the list
@@ -106,4 +108,21 @@ void add_file (struct GPS_file_list* filelist,
     return;
     
 } // end add_file()
+
+
+struct GPS_file* malloc_GPS_file () {
+
+    struct GPS_file* new_file;
+    new_file = malloc(sizeof(struct GPS_file));
+    new_file->filename = malloc(sizeof(char*));
+    new_file->filepath = malloc(sizeof(char*));
+    new_file->filesize = malloc(sizeof(off_t*));
+    new_file->mod_date =malloc(sizeof(__darwin_time_t*));
+    new_file->route_distance = malloc(sizeof(double));
+    new_file->route_climb = malloc(sizeof(double));
+    new_file->route_descent = malloc(sizeof(double));
+    
+    return new_file;
+    
+} // end malloc_GPS_file()
 
