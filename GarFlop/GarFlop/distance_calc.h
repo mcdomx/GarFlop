@@ -10,7 +10,6 @@
 #define distance_calc_h
 
 #include <stdio.h>
-#include "parse_GPS_file.h"
 #include "files_list.h"
 
 struct GPS_entry {

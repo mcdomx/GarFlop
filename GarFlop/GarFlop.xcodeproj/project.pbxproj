@@ -8,9 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		99115DA220DDADCE00D7FF21 /* distance_calc.c in Sources */ = {isa = PBXBuildFile; fileRef = 99115DA020DDADCE00D7FF21 /* distance_calc.c */; };
-		99115DA520DDB07F00D7FF21 /* parse_GPS_file.c in Sources */ = {isa = PBXBuildFile; fileRef = 99115DA320DDB07F00D7FF21 /* parse_GPS_file.c */; };
 		99700CCC20DD30E300E8C48B /* settings_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 99700CCA20DD30E300E8C48B /* settings_list.c */; };
 		99700CCF20DD752B00E8C48B /* files_list.c in Sources */ = {isa = PBXBuildFile; fileRef = 99700CCD20DD752B00E8C48B /* files_list.c */; };
+		99EDEC5B20E9847300AE48FB /* files_array.c in Sources */ = {isa = PBXBuildFile; fileRef = 99EDEC5920E9847300AE48FB /* files_array.c */; };
 		A996985520DC6B06006F6CFB /* garflop.c in Sources */ = {isa = PBXBuildFile; fileRef = A996985420DC6B06006F6CFB /* garflop.c */; };
 /* End PBXBuildFile section */
 
@@ -29,12 +29,12 @@
 /* Begin PBXFileReference section */
 		99115DA020DDADCE00D7FF21 /* distance_calc.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = distance_calc.c; sourceTree = "<group>"; };
 		99115DA120DDADCE00D7FF21 /* distance_calc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = distance_calc.h; sourceTree = "<group>"; };
-		99115DA320DDB07F00D7FF21 /* parse_GPS_file.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = parse_GPS_file.c; sourceTree = "<group>"; };
-		99115DA420DDB07F00D7FF21 /* parse_GPS_file.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = parse_GPS_file.h; sourceTree = "<group>"; };
 		99700CCA20DD30E300E8C48B /* settings_list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = settings_list.c; sourceTree = "<group>"; };
 		99700CCB20DD30E300E8C48B /* settings_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = settings_list.h; sourceTree = "<group>"; };
 		99700CCD20DD752B00E8C48B /* files_list.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = files_list.c; sourceTree = "<group>"; };
 		99700CCE20DD752B00E8C48B /* files_list.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = files_list.h; sourceTree = "<group>"; };
+		99EDEC5920E9847300AE48FB /* files_array.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = files_array.c; sourceTree = "<group>"; };
+		99EDEC5A20E9847300AE48FB /* files_array.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = files_array.h; sourceTree = "<group>"; };
 		A996985120DC6B06006F6CFB /* GarFlop */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = GarFlop; sourceTree = BUILT_PRODUCTS_DIR; };
 		A996985420DC6B06006F6CFB /* garflop.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = garflop.c; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -74,8 +74,8 @@
 				99700CCA20DD30E300E8C48B /* settings_list.c */,
 				99700CCE20DD752B00E8C48B /* files_list.h */,
 				99700CCD20DD752B00E8C48B /* files_list.c */,
-				99115DA420DDB07F00D7FF21 /* parse_GPS_file.h */,
-				99115DA320DDB07F00D7FF21 /* parse_GPS_file.c */,
+				99EDEC5A20E9847300AE48FB /* files_array.h */,
+				99EDEC5920E9847300AE48FB /* files_array.c */,
 				99115DA120DDADCE00D7FF21 /* distance_calc.h */,
 				99115DA020DDADCE00D7FF21 /* distance_calc.c */,
 			);
@@ -139,8 +139,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				99700CCC20DD30E300E8C48B /* settings_list.c in Sources */,
-				99115DA520DDB07F00D7FF21 /* parse_GPS_file.c in Sources */,
 				99115DA220DDADCE00D7FF21 /* distance_calc.c in Sources */,
+				99EDEC5B20E9847300AE48FB /* files_array.c in Sources */,
 				A996985520DC6B06006F6CFB /* garflop.c in Sources */,
 				99700CCF20DD752B00E8C48B /* files_list.c in Sources */,
 			);
